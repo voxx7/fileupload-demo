@@ -1,0 +1,24 @@
+{
+  "name": "fileupload-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxx7/fileupload-demo.git"
+  },
+  "dependencies": {
+    "express": "4.2.x",
+    "multiparty" : "*",
+    "sqlite3": "*"
+  },
+  "author": "Yuanchi Tu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/voxx7/fileupload-demo/issues"
+  },
+  "homepage": "https://github.com/voxx7/fileupload-demo#readme"
+}
