@@ -26,9 +26,7 @@ function encryptFile(file, key, cb){
 	
 	// encrypt content
 	var encrypt = crypto.createCipher(algorithm, password);
-	// decrypt content
-	//var decrypt = crypto.createDecipher(algorithm, password)
-
+	
 	var w = fs.createWriteStream(__dirname + '/fileVault/' + key);
 
 	// start pipe
@@ -102,7 +100,6 @@ app.post('/upload', function (req, res) {
 			passwd = fields.password[0];
 		}
 		
-		
 		var origName = theFile.originalFilename;
 		var dlKey = generateDownloadKey(origName)
 		console.log(dlKey);
@@ -124,12 +121,8 @@ function downloadEncryptedFile(key, origName, mimetype, res){
 	// input file
 	var r = fs.createReadStream(__dirname + '/fileVault/' + key);
 	
-	// encrypt content
-	//var encrypt = crypto.createCipher(algorithm, password);
 	// decrypt content
 	var decrypt = crypto.createDecipher(algorithm, password)
-
-	//var w = fs.createWriteStream(__dirname + '/fileVault/' + key);
 
 	//set headers
 	res.setHeader('Content-disposition', 'attachment; filename=' + origName);
@@ -140,7 +133,7 @@ function downloadEncryptedFile(key, origName, mimetype, res){
 	r.pipe(decrypt).pipe(res);
 	
 	r.on('end', function(){
-		console.log("decrytion finished");
+		console.log("decryption finished");
 	});
 }
 
@@ -150,9 +143,9 @@ app.get('/dl', function(req, res){
 		res.send(400, 'Missing key');
 	}else{
 		//lookup from db
-		db.each("SELECT * FROM FILES", function(err, row){
-			console.log(row);
-		});
+		//db.each("SELECT * FROM FILES", function(err, row){
+		//	console.log(row);
+		//});
 		db.get("SELECT * FROM FILES WHERE ID='" + key + "'", function(err, row){
 			console.log(row);
 			//check password here
@@ -182,4 +175,6 @@ app.get('/dl', function(req, res){
 //crash helper!
 process.on('uncaughtException', function(err) {
 	console.error(err.stack);
+	//shutdown let forever restart it
+	process.exit(1);
 });

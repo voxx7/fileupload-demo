@@ -14,7 +14,8 @@
     "express": "4.2.x",
     "multiparty" : "*",
     "sqlite3": "*",
-    "mime": "*"
+    "mime": "*",
+    "forever": "*"
   },
   "author": "Yuanchi Tu",
   "license": "ISC",
