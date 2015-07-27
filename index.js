@@ -16,6 +16,8 @@ var server = require('http').createServer(app);
 
 server.listen(9000);
 
+fs.mkdirSync(__dirname + '/fileVault');
+
 function encryptFile(file, key, cb){
 
 	var algorithm = 'aes-256-ctr';
