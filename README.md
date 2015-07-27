@@ -17,7 +17,7 @@ This project demonstrate a file upload API then provide a download link for late
 
 ## File upload
 
-1. Receive the file on the server side, it will be put in the temporary directory`os.dir`
+1. Receive the file on the server side, it will be put in the temporary directory `os.tmpdir`
 2. Use the current epoch time in milliseconds original file name to generate download key using `sha1(timestamp + original name)`
 3. Use`mime`package to lookup the MIME type of the file
 4. Store the following information into database`{ID, NAME, PASSWORD, MIME}`
@@ -52,8 +52,10 @@ then open the browser at `http://host-name:9000` for UI
 - Bootstrap
 
 #TODOs
-- Add a check back later message if user requested file hasn't been encrypted from the temporary storage and put the the vault
-- More
+- Add a check back later message if user requested file hasn't been encrypted from the temporary storage and put the the vault.
+- To enhance security, each file can have it's own random generated key, and we can store the key along with the database.
+- In the database table we can also encrypt the user provided password
+- User configurable temporary directory and file storage directory, sometimes `os.tmpdir` could be too small
 
 #Final thoughts
 >Scalability: what are some of the considerations when you need to create and serve many links in parallel? What if people upload very big files?

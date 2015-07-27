@@ -82,7 +82,7 @@ app.post('/upload', function (req, res) {
 		data.rx = bytesReceived;
 		data.total = bytesExpected;
 		data.p = curP;
-		console.log((curP * 100) + "% uploaded");
+		//console.log((curP * 100) + "% uploaded");
 		
 	});
 
