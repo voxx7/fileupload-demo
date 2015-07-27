@@ -16,7 +16,11 @@ var server = require('http').createServer(app);
 
 server.listen(9000);
 
-fs.mkdirSync(__dirname + '/fileVault');
+try{
+	fs.mkdirSync(__dirname + '/fileVault');
+}catch(e){
+	
+}
 
 function encryptFile(file, key, cb){
 
