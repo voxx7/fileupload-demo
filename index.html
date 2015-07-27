@@ -13,8 +13,11 @@
     	function beforeSendHandler(){
     		console.log("before send");
     	}
-    	function completeHandler(){
+    	function completeHandler(e){
     		console.log("done");
+    		console.log(e.key);
+    		
+    		$('#dlLink').text("Download link: " + location.origin + "/dl?key=" + e.key);
     		$('progress').hide();
     		
     		var control = $("#file");
@@ -40,6 +43,11 @@
 				if (fileIn.files === undefined || fileIn.files.length == 0) {
         			alert("Please select a file");
         			return;
+				}
+				var passwd = $("#password").val();
+				console.log("password: " + passwd);
+				if(passwd){
+					formData.append( 'password', passwd );
 				}
 				formData.append( 'file', fileIn.files[0] );
 				console.log(formData);
@@ -102,10 +110,12 @@
 		
 		<form enctype="multipart/form-data">
 	    	<input id="file" name="file" type="file" />
+	    	<label for="password">Password</label>
+	    	<input id="password" name="password" type="password" />
     		<input type="button" class="btn btn-default" value="Upload" />
 		</form>
 		<progress></progress>
-		
+		<div id="dlLink"></div>
 	  </div>
 	</div>
 </div>

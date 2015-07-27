@@ -13,7 +13,8 @@
   "dependencies": {
     "express": "4.2.x",
     "multiparty" : "*",
-    "sqlite3": "*"
+    "sqlite3": "*",
+    "mime": "*"
   },
   "author": "Yuanchi Tu",
   "license": "ISC",
